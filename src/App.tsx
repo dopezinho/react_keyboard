@@ -1,12 +1,13 @@
+// src/App.tsx
 import React from 'react';
 
 type State = {
-  pressedKey: string;
+  pressedKey: string | null;
 };
 
 export class App extends React.Component<{}, State> {
   state: State = {
-    pressedKey: '',
+    pressedKey: null,
   };
 
   componentDidMount(): void {
@@ -18,7 +19,6 @@ export class App extends React.Component<{}, State> {
   }
 
   handleKeyUp = (event: KeyboardEvent) => {
-    event.preventDefault();
     this.setState({ pressedKey: event.key });
   };
 
@@ -28,7 +28,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <p className="App__message">
-          {pressedKey !== '' ? (
+          {pressedKey !== null ? (
             <>The last pressed key is [{pressedKey}]</>
           ) : (
             <>Nothing was pressed yet</>
